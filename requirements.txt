@@ -1,2 +1,12 @@
 streamlit
 openai
+PyPDF2
+langchain
+time
+dotenv
+os
+shutil
+pickle
+datetime
+
+
