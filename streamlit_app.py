@@ -32,7 +32,7 @@ CHAT_HISTORY_DIR = "chat_history"
 ACTIVE_CHAT_FILE = os.path.join(CHAT_HISTORY_DIR, "active_session.pkl")
 
 
-# --- 后端辅助函数 (无需修改) ---
+# --- 后端辅助 ---
 @st.cache_resource
 def get_embeddings():
     # 实际项目中，API Key不应硬编码，而是通过环境变量等方式管理
@@ -162,7 +162,7 @@ def get_relevant_files(query):
 
 def get_agent_executor(selected_files=None):
     """Creates an agent with tools. The document retriever is filtered by selected files."""
-    search = TavilySearchResults(max_results=6)
+    search = TavilySearchResults(max_results=3)
     @tool
     def search_tool(name: str) -> str:
         """当你需要搜索或者查询的时候使用此工具。"""
