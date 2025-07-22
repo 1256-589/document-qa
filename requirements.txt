@@ -1,10 +1,8 @@
 streamlit
 openai
 langchain
-os
 shutil
 pickle
-datetime
 langchain-community
 langchain-experimental
 pandas
