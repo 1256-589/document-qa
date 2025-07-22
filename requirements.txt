@@ -1,7 +1,6 @@
 streamlit
 openai
 langchain
-pickle
 langchain-community
 langchain-experimental
 pandas
