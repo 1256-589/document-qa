@@ -1,1 +1,363 @@
+/* ==========================================================================
+   Streamlit 应用自定义样式 (已整合优化)
+   ========================================================================== */
+
+/* --- 1. 全局字体和基础样式 --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 隐藏 Streamlit 默认的页眉、页脚和主菜单按钮 */
+#MainMenu, footer, header {
+    /*visibility: hidden;*/
+}
+
+
+/* ==========================================================================
+   2. 侧边栏 (Sidebar) 样式
+   ========================================================================== */
+
+/* --- 2.1 侧边栏容器 --- */
+[data-testid="stSidebar"] {
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    padding: 2rem 0 0 0;
+}
+
+/* 减小侧边栏内元素的垂直间距，使其更紧凑 */
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.3rem !important; /* 使用 !important 强制覆盖默认值 */
+}
+
+/* --- 2.2 侧边栏标题 --- */
+[data-testid="stSidebar"] h1 {
+    /*position: sticky;*/
+    top: 0;
+    /*z-index: 100;*/
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #1157c1; /* 主题色 */
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* --- 2.3 对话历史/导航按钮 --- */
+/* 基础样式 */
+[data-testid="stSidebar"] .stButton > button {
+    display: flex;
+    align-items: center; /* 确保图标和文字垂直居中 */
+    justify-content: center;
+    gap: 0.5rem; /* 图标与文字间距 */
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #343a40;
+    background-color: transparent; /* 默认透明 */
+    border: 1px solid transparent; /* 默认透明边框，方便悬停时变化 */
+    border-radius: 0.5rem;
+    padding: 0.7rem 0.8rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 悬停效果 (适用于“新建对话”和非激活的对话历史) */
+[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #e9ecef; /* 悬停时显示浅灰色背景 */
+    color: #1f2937;
+    border-color: #d4d4d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 当前激活对话的样式 (使用 :has 自动识别) */
+[data-testid="stSidebar"] .stButton > button:has(strong) {
+    background-color: #f0fdf4; /* 激活背景: 淡绿色 */
+    color: #166534;           /* 激活文字: 深绿色 */
+    font-weight: 600;
+    border-color: transparent;
+}
+/* 激活状态下悬停时，保持激活样式不变 */
+[data-testid="stSidebar"] .stButton > button:has(strong):hover {
+    background-color: #f0fdf4;
+    color: #166534;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* --- 2.4 主要操作按钮 (如 "开始处理") --- */
+/* 基础样式 */
+[data-testid="stSidebar"] button[data-testid="stBaseButton-primary"] {
+    background-color: #138b40 !important; /* 主题色: 绿色 */
+    color: white !important;
+    border-color: #16a34a !important;
+}
+/* 悬停效果 */
+[data-testid="stSidebar"] button[data-testid="stBaseButton-primary"]:hover {
+    background-color: #15803d !important; /* 悬停: 深绿色 */
+    border-color: #15803d !important;
+}
+/* 禁用状态 */
+[data-testid="stSidebar"] button[data-testid="stBaseButton-primary"]:disabled {
+    background-color: #e5e7eb !important; /* 禁用背景: 冷灰色 */
+    color: #9ca3af !important;           /* 禁用文字: 灰色 */
+    border-color: #e5e7eb !important;
+    cursor: not-allowed;
+}
+
+/* --- 2.5 特殊按钮 (如 "清空数据" ) --- */
+/* 注意: 下方的 class 名称可能随 Streamlit 版本更新而改变，需谨慎使用 */
+[data-testid="stSidebar"] .stButton > button.st-emotion-cache-19n915n {
+    background-color: #d62728; /* 危险操作红色 */
+    color: white;
+    border: none;
+}
+[data-testid="stSidebar"] .stButton > button.st-emotion-cache-19n915n:hover {
+    background-color: #c02223;
+    color: white;
+}
+
+
+/* --- 2.6 “模型切换”开关 (使用 Checkbox 模拟) --- */
+/* 容器 */
+label[data-baseweb="checkbox"] {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #f4f4f5;
+    border: 1px solid #e4e4e7;
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+/* 开关轨道 (关闭时) */
+label[data-baseweb="checkbox"] > div:first-of-type {
+    background-color: #b2c2da !important;
+}
+/* 开关圆形滑块 */
+label[data-baseweb="checkbox"] > div:first-of-type > div {
+    background-color: #ffffff !important;
+}
+/* 开关开启时的轨道颜色 */
+label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-type {
+    background-color: #1157c1 !important; /* 主题蓝色 */
+}
+
+/* --- 2.7 分隔线 --- */
+[data-testid="stSidebar"] hr {
+    margin: 1.5rem 0;
+}
+
+
+/* ==========================================================================
+   3. 主内容区 (Main Content) 样式
+   ========================================================================== */
+
+/* --- 3.1 聊天消息 --- */
+/* 消息容器基础样式 */
+.stChatMessage {
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start; /* 核心：头像与内容顶部对齐 */
+    gap: 1.5rem;             /* 头像与气泡的间距 */
+}
+/* 用户消息样式 */
+[data-testid="stChatMessage"]:has(span[data-testid="chat-avatar-user"]) {
+    background-color: #e3f2fd;
+    border-left: 5px solid #1f77b4; /* 用户主题色 */
+}
+/* AI 消息样式 */
+[data-testid="stChatMessage"]:has(span[data-testid="chat-avatar-ai"]) {
+    background-color: #ffffff;
+    border-left: 5px solid #ff7f0e; /* AI 主题色 */
+}
+/* 移除消息内容块内第一个元素的上边距，使其紧靠顶部 */
+[data-testid="stChatMessageContent"] div[data-testid="stVerticalBlock"] > div:first-child {
+    margin-top: 0;
+}
+
+
+/* --- 3.2 极简紧凑版文件上传器 --- */
+[data-testid='stFileUploader'] {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    border: 2px dashed #e0e0e0;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+}
+[data-testid='stFileUploader']:hover {
+    border-color: #1f77b4; /* 主题色 */
+}
+/* 隐藏默认标签 */
+[data-testid='stFileUploader'] > label {
+    display: none;
+}
+/* 拖拽区域 */
+[data-testid='stFileUploaderDropzone'] {
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    background-color: #fafafa;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 隐藏所有默认的指示文字 */
+[data-testid='stFileUploaderDropzoneInstructions'] > div > span,
+[data-testid='stFileUploaderDropzoneInstructions'] > div > small {
+    display: none !important;
+}
+/* 使用 ::before 伪元素创建自定义上传提示 */
+[data-testid='stFileUploaderDropzoneInstructions'] > div::before {
+    content: '📁 文件上传';
+    font-size: 17px;
+    color: #666;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+/* 文件名和删除按钮 */
+[data-testid='stFileUploaderFileName'] {
+    font-size: 12px;
+    margin: 5px 0;
+}
+[data-testid='stFileUploaderDeleteBtn'] {
+    font-size: 12px;
+    padding: 2px 6px;
+    margin-left: 8px;
+}
+/* 隐藏默认的 "Browse files" 按钮，只保留拖拽功能和自定义提示 */
+[data-testid='stBaseButton-secondary'] {
+    display: none;
+}
+
+
+/* --- 3.3 折叠面板 (Expander, 用于知识库文件展示) --- */
+/* 容器 */
+[data-testid="stExpander"] {
+    border: 1px solid #e9ecef;
+    border-radius: 0.6rem;
+    background-color: #ffffff;
+    margin-top: 0.5rem;
+    transition: box-shadow 0.2s ease-in-out;
+}
+[data-testid="stExpander"]:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+/* 标题栏 */
+[data-testid="stExpander"] summary {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #343a40;
+    padding: 0.8rem 1rem;
+}
+/* 标题栏的下拉箭头图标 */
+[data-testid="stExpander"] summary svg {
+    color: #343a40;
+}
+/* 展开后的内容区域 */
+[data-testid="stExpanderDetails"] {
+    padding: 0 0.8rem 0.8rem 0.8rem;
+}
+/* 内部的提示文字 (e.g., "当前库中有...") */
+[data-testid="stExpanderDetails"] [data-testid="stCaption"] {
+    text-align: center;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #e9ecef;
+    margin-bottom: 0.6rem;
+    color: #6c757d;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+/* 文件列表的 Markdown 项，减少间距 */
+[data-testid="stExpanderDetails"] [data-testid="stMarkdown"] {
+    margin-bottom: -12px;
+}
+/* 文件列表每一项的样式 */
+[data-testid="stExpanderDetails"] [data-testid="stMarkdown"] p {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    border-radius: 0.4rem;
+    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #374151;
+}
+[data-testid="stExpanderDetails"] [data-testid="stMarkdown"] p:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* --- 3.4 AI 消息内 Markdown 内容的美化 --- */
+/* 标题 (H1-H6) */
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h1,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h2,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h3,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h4,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h5,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h6 {
+    margin-block-start: 1.2em;
+    margin-block-end: 0.6em;
+    font-weight: 600;
+    color: #1f2937;
+    border-bottom: none !important;
+    padding-bottom: 0;
+}
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h1 { font-size: 1.45rem; }
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h2 { font-size: 1.25rem; }
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h3 { font-size: 1.15rem; }
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h4,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h5,
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h6 { font-size: 1rem; }
+
+/* 大段代码块 (<pre><code>) */
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] pre {
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    line-height: 1.5;
+}
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] pre code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #111827;
+    font-size: 0.975rem;
+}
+
+/* 行内代码 (<code>) */
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] :not(pre) > code {
+    background-color: #f3f4f6;
+    color: #0a2537;
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 1.0em;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+/* 代码块的复制按钮 */
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] pre button {
+    background-color: #d3d4d6 !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.375rem !important;
+    transition: background-color 0.2s ease !important;
+}
+[data-testid="stChatMessageContent"][aria-label="Chat message from ai"] pre button:hover {
+    background-color: #d1d5db !important;
+}
+
+/* Hide the sidebar collapse button */
+[data-testid="stSidebarHeader"] {
+    display: none;
+}
 
