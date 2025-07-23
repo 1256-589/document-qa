@@ -242,7 +242,7 @@ def main():
         with open(file_name, "r", encoding="utf-8") as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-    load_css('C:\\Users\\30621\\PycharmProject\\LLm-gent\\Long-chain-agent\\style.css')
+    load_css('style.css')
 
     # --- 会话状态初始化 ---
     if "chat_history" not in st.session_state:
