@@ -34,7 +34,7 @@ body {
     /*position: sticky;*/
     top: 0;
     /*z-index: 100;*/
-    font-size: 1.9rem;
+    font-size: 0rem;
     font-weight: 700;
     color: #1157c1; /* 主题色 */
     text-align: center;
@@ -121,17 +121,18 @@ body {
 
 /* --- 2.6 “模型切换”开关 (使用 Checkbox 模拟) --- */
 /* 容器 */
-label[data-baseweb="checkbox"] {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: #f4f4f5;
-    border: 1px solid #e4e4e7;
-    border-radius: 0.5rem;
-    padding: 0.6rem 0.8rem;
-    margin-top: 0.5rem;
-    cursor: pointer;
-}
+/*label[data-baseweb="checkbox"] {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin: auto;*/
+/*    width: 100%;*/
+/*    background-color: #f4f4f5;*/
+/*    border: 1px solid #e4e4e7;*/
+/*    border-radius: 0.5rem;*/
+/*    padding: 0.6rem 0.8rem;*/
+/*    margin-top: 0.5rem;*/
+/*    cursor: pointer;*/
+/*}*/
 /* 开关轨道 (关闭时) */
 label[data-baseweb="checkbox"] > div:first-of-type {
     background-color: #b2c2da !important;
@@ -158,25 +159,27 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
 /* --- 3.1 聊天消息 --- */
 /* 消息容器基础样式 */
 .stChatMessage {
-    border-radius: 0.75rem;
-    border: 1px solid transparent;
+    border-radius: 0.95rem;
+    border: 2px solid transparent;
     padding: 1rem 1.25rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     display: flex;
     align-items: flex-start; /* 核心：头像与内容顶部对齐 */
-    gap: 1.5rem;             /* 头像与气泡的间距 */
+    gap: 1.1rem;             /* 头像与气泡的间距 */
 }
 /* 用户消息样式 */
-[data-testid="stChatMessage"]:has(span[data-testid="chat-avatar-user"]) {
-    background-color: #e3f2fd;
-    border-left: 5px solid #1f77b4; /* 用户主题色 */
+[data-testid="stLayoutWrapper"] {
+    background-color: #fffdfd;
+    border: 1px solid #b1b4b6; /* 用户主题色 */
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
 }
-/* AI 消息样式 */
-[data-testid="stChatMessage"]:has(span[data-testid="chat-avatar-ai"]) {
-    background-color: #ffffff;
-    border-left: 5px solid #ff7f0e; /* AI 主题色 */
-}
+ /*AI 消息样式 */
+/*[data-testid="stChatMessage"]:has(span[data-testid="chat-avatar-ai"]) {*/
+/*    background-color: #ffffff;*/
+/*    border-left: 5px solid #ff7f0e; !* AI 主题色 *!*/
+/*}*/
 /* 移除消息内容块内第一个元素的上边距，使其紧靠顶部 */
 [data-testid="stChatMessageContent"] div[data-testid="stVerticalBlock"] > div:first-child {
     margin-top: 0;
@@ -186,7 +189,7 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
 /* --- 3.2 极简紧凑版文件上传器 --- */
 [data-testid='stFileUploader'] {
     width: 100%;
-    margin: 0;
+    margin-bottom: 0.5rem ;
     padding: 1rem;
     border: 2px dashed #e0e0e0;
     background-color: #ffffff;
@@ -244,10 +247,10 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
 /* --- 3.3 折叠面板 (Expander, 用于知识库文件展示) --- */
 /* 容器 */
 [data-testid="stExpander"] {
-    border: 1px solid #e9ecef;
+    border: 1px  #e9ecef;
     border-radius: 0.6rem;
     background-color: #ffffff;
-    margin-top: 0.5rem;
+    /*margin-top: 0.5rem;*/
     transition: box-shadow 0.2s ease-in-out;
 }
 [data-testid="stExpander"]:hover {
@@ -313,6 +316,7 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
     color: #1f2937;
     border-bottom: none !important;
     padding-bottom: 0;
+    /*padding-right: 5px;*/
 }
 [data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h1 { font-size: 1.45rem; }
 [data-testid="stChatMessageContent"][aria-label="Chat message from ai"] h2 { font-size: 1.25rem; }
@@ -327,12 +331,14 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1rem;
+    margin-right: 0.5rem;
     line-height: 1.5;
 }
 [data-testid="stChatMessageContent"][aria-label="Chat message from ai"] pre code {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     color: #111827;
     font-size: 0.975rem;
+    /*margin-right: 5rem;*/
 }
 
 /* 行内代码 (<code>) */
@@ -361,3 +367,12 @@ label[data-baseweb="checkbox"]:has(input[aria-checked="true"]) > div:first-of-ty
     display: none;
 }
 
+[role="dialog"]:has(.custom-wide-dialog) {
+        max-width: 85vw !important; /* 将弹窗最大宽度设为视口的85% */
+    }
+
+    /* 规则 2: 强制让该弹窗内的stDataFrame组件宽度占满100% */
+[role="dialog"]:has(.custom-wide-dialog) [data-testid="stDataFrame"] {
+        width: 100% !important;
+        max-width: none !important; /* 关键：覆盖掉默认的最大宽度限制 */
+    }
