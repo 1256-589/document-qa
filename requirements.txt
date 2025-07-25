@@ -13,3 +13,4 @@ langchain-deepseek
 matplotlib
 tabulate
 langchain_experimental
+seaborn
