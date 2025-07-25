@@ -6,7 +6,17 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-
+@media (max-width: 576px) {
+            /* 找到我们自定义的 class "mobile-horizontal-controls" */
+            .mobile-horizontal-controls {
+                /* 找到其内部的 Streamlit 列布局容器 */
+                /* data-testid 是 Streamlit 用于测试的稳定标识符，比随机生成的 class 更可靠 */
+                & [data-testid="stHorizontalBlock"] > div {
+                    /* 强制其flex方向为行，!important 用于确保覆盖 Streamlit 的默认样式 */
+                    flex-direction: row !important;
+                }
+            }
+        }
 /* 隐藏 Streamlit 默认的页眉、页脚和主菜单按钮 */
 #MainMenu, footer, header {
     /*visibility: hidden;*/
