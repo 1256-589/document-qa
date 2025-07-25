@@ -3,10 +3,11 @@ openai
 langchain
 langchain-community
 langchain-experimental
-pandas
-langchain-tavily
-PyPDF2
-dashscope
+pandas langchain-tavily
+PyPDF2 dashscope
 faiss-cpu
 python-dotenv
 langchain-deepseek
+matplotlib
+tabulate
+langchain_experimental
