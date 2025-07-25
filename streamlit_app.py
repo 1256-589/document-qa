@@ -271,7 +271,7 @@ def get_agent_executor(selected_files=None,df=None):
     ```
 ``* **[绘图指南]** * 如果用户要求绘图 
 1.  **使用 `matplotlib.pyplot` (别名为 `plt`)** 来创建图表。
-2.  **为每张图保存为唯一文件**: 每生成一张图，都必须将其保存为一个唯一的 `.png` 文件。例如 `pic\\age_histogram.png`, `pic\\salary_plot.png`。不要重复使用 `pic\\plot.png`。
+2.  **为每张图保存为唯一文件**: 每生成一张图，都必须将其保存为一个唯一的 `.png` 文件。例如 `pic/age_histogram.png`, `pic/salary_plot.png`。不要重复使用 `pic/plot.png`。
 3.  **最终输出格式**: 当你完成所有绘图并保存文件后，你的最终、唯一的输出必须遵循下面的特殊格式。对于你生成的每一张图，都创建一个`GRAPH_BEGIN/GRAPH_END`块。
 
     **格式模板:**
