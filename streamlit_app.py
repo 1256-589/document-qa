@@ -578,7 +578,7 @@ def main():
         with controls_container:
             view_cols = st.columns([0.7, 0.3]) # 调整比例以适应更窄的视图
             with view_cols[0]:
-                st.markdown("**AI 模式:**")
+                # st.markdown("**AI 模式:**")
                 control_cols = st.columns(2)
                 with control_cols[0]:
                     st.session_state.rag_active = st.toggle("文档", value=False, help="启用后，AI优先从PDF文档中寻找答案。")
