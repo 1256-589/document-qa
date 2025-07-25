@@ -2,22 +2,13 @@
    Streamlit 应用自定义样式 (已整合优化)
    ========================================================================== */
 @media (max-width: 576px) {
-            /* 1. 选中我们自定义的 div 容器 */
-            .mobile-horizontal-controls {
-                /* 2. 找到它内部的 Streamlit 列布局容器 */
-                & [data-testid="stHorizontalBlock"] > div {
-                    /* 3. 强制其内部元素始终按行排列 */
-                    flex-direction: row !important;
-                }
-
-                /* 4. 选中列布局中的每一列 (stVerticalBlock) */
-                & [data-testid="stVerticalBlock"] {
-                    /* 5. 强制每一列占据大约一半的宽度 */
-                    /* 使用 flex-basis 在 flex 容器中比 width 更可靠 */
-                    flex-basis: 50% !important;
-                    /* 6. 设置一个最小宽度，防止被过度挤压 */
-                    min-width: 130px !important; 
-                }
+            .mobile-horizontal-grid [data-testid="stHorizontalBlock"] > div {
+                /* 1. 将列容器的显示模式强制改为 grid */
+                display: grid !important;
+                /* 2. 定义两列，每列占据相等的空间 (1fr) */
+                grid-template-columns: 1fr 1fr !important;
+                /* 3. 设置列之间的间距 */
+                gap: 1rem !important;
             }
         }
 
