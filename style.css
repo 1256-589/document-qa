@@ -2,7 +2,7 @@
    Streamlit 应用自定义样式 (已整合优化)
    ========================================================================== */
 @media (max-width: 576px) {
-            .mobile-horizontal-grid [data-testid="stHorizontalBlock"] > div {
+            .mobile-horizontal-controls [data-testid="stHorizontalBlock"] > div {
                 /* 1. 将列容器的显示模式强制改为 grid */
                 display: grid !important;
                 /* 2. 定义两列，每列占据相等的空间 (1fr) */
