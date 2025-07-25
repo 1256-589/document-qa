@@ -572,7 +572,7 @@ def main():
                 st.session_state.file_selection["show"] = False
                 st.rerun()
     with st._bottom:
-        coo,coo1,coo3 = st.columns([0.2,0.2,0.6])
+        coo,coo1,coo3 = st.columns([0.25,0.25,0.5])
         with coo:
             st.session_state.rag_active = st.toggle("RAG",value=False)
         with coo1:
