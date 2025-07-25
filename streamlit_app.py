@@ -581,10 +581,10 @@ def main():
                 # 在左侧列内部再次使用列，让两个开关紧挨着
                 control_cols = st.columns(2)
                 with control_cols[0]:
-                    st.session_state.rag_active = st.toggle("文档问答", value=st.session_state.rag_active, help="启用此模式后，AI会优先从您上传的PDF文档中寻找答案。")
+                    st.session_state.rag_active = st.toggle("文档问答", value=False, help="启用此模式后，AI会优先从您上传的PDF文档中寻找答案。")
                 with control_cols[1]:
-                    is_df_loaded = st.session_state.get('dff', False)
-                    st.session_state.data_active = st.toggle("数据分析", value=st.session_state.data_active, disabled=not is_df_loaded, help="需先上传CSV文件。启用后，AI可以对表格数据进行计算和绘图。")
+                    # is_df_loaded = st.session_state.get('dff', False)
+                    st.session_state.data_active = st.toggle("数据分析", value=False, disabled=not is_df_loaded, help="需先上传CSV文件。启用后，AI可以对表格数据进行计算和绘图。")
         # coo,coo1,jiy = st.columns([0.2,0.2,0.6])
         # with coo:
         #     st.session_state.rag_active = st.toggle("RAG",value=False)
