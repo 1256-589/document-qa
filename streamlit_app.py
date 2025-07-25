@@ -572,19 +572,35 @@ def main():
                 st.session_state.file_selection["show"] = False
                 st.rerun()
     with st._bottom:
+        st.markdown('<div class="mobile-horizontal-controls">', unsafe_allow_html=True)
+
         controls_container = st.container()
         with controls_container:
-            # 使用列布局将控件组放置在左侧
-            view_cols = st.columns([0.9, 0.1])
+            view_cols = st.columns([0.7, 0.3]) # 调整比例以适应更窄的视图
             with view_cols[0]:
-                # st.markdown("**AI 模式选择:**")
-                # 在左侧列内部再次使用列，让两个开关紧挨着
+                st.markdown("**AI 模式:**")
                 control_cols = st.columns(2)
                 with control_cols[0]:
-                    st.session_state.rag_active = st.toggle("文档问答", value=False, help="启用此模式后，AI会优先从您上传的PDF文档中寻找答案。")
+                    st.session_state.rag_active = st.toggle("文档", value=False, help="启用后，AI优先从PDF文档中寻找答案。")
                 with control_cols[1]:
-                    # is_df_loaded = st.session_state.get('dff', False)
-                    st.session_state.data_active = st.toggle("数据分析", value=False, help="需先上传CSV文件。启用后，AI可以对表格数据进行计算和绘图。")
+                    is_df_loaded = st.session_state.get('dff', False)
+                    st.session_state.data_active = st.toggle("数据", value=False, help="需上传CSV。启用后，AI可对数据进行计算和绘图。")
+        
+        # 【重大修改】关闭我们自定义的 div
+        st.markdown('</div>', unsafe_allow_html=True)
+        # controls_container = st.container()
+        # with controls_container:
+        #     # 使用列布局将控件组放置在左侧
+        #     view_cols = st.columns([0.9, 0.1])
+        #     with view_cols[0]:
+        #         # st.markdown("**AI 模式选择:**")
+        #         # 在左侧列内部再次使用列，让两个开关紧挨着
+        #         control_cols = st.columns(2)
+        #         with control_cols[0]:
+        #             st.session_state.rag_active = st.toggle("文档问答", value=False, help="启用此模式后，AI会优先从您上传的PDF文档中寻找答案。")
+        #         with control_cols[1]:
+        #             # is_df_loaded = st.session_state.get('dff', False)
+        #             st.session_state.data_active = st.toggle("数据分析", value=False, help="需先上传CSV文件。启用后，AI可以对表格数据进行计算和绘图。")
         # coo,coo1,jiy = st.columns([0.2,0.2,0.6])
         # with coo:
         #     st.session_state.rag_active = st.toggle("RAG",value=False)
