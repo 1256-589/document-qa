@@ -572,11 +572,24 @@ def main():
                 st.session_state.file_selection["show"] = False
                 st.rerun()
     with st._bottom:
-        coo,coo1,jiy = st.columns([0.2,0.2,0.6])
-        with coo:
-            st.session_state.rag_active = st.toggle("RAG",value=False)
-        with coo1:
-            st.session_state.data_active = st.toggle("Data", value=False)
+        controls_container = st.container()
+        with controls_container:
+            # 使用列布局将控件组放置在左侧
+            view_cols = st.columns([0.6, 0.4])
+            with view_cols[0]:
+                st.markdown("**AI 模式选择:**")
+                # 在左侧列内部再次使用列，让两个开关紧挨着
+                control_cols = st.columns(2)
+                with control_cols[0]:
+                    st.session_state.rag_active = st.toggle("文档问答", value=st.session_state.rag_active, help="启用此模式后，AI会优先从您上传的PDF文档中寻找答案。")
+                with control_cols[1]:
+                    is_df_loaded = st.session_state.get('dff', False)
+                    st.session_state.data_active = st.toggle("数据分析", value=st.session_state.data_active, disabled=not is_df_loaded, help="需先上传CSV文件。启用后，AI可以对表格数据进行计算和绘图。")
+        # coo,coo1,jiy = st.columns([0.2,0.2,0.6])
+        # with coo:
+        #     st.session_state.rag_active = st.toggle("RAG",value=False)
+        # with coo1:
+        #     st.session_state.data_active = st.toggle("Data", value=False)
 
 
     if user_query := st.chat_input("请输入您的问题..."):
