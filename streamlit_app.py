@@ -575,9 +575,9 @@ def main():
         controls_container = st.container()
         with controls_container:
             # 使用列布局将控件组放置在左侧
-            view_cols = st.columns([0.6, 0.4])
+            view_cols = st.columns([0.9, 0.1])
             with view_cols[0]:
-                st.markdown("**AI 模式选择:**")
+                # st.markdown("**AI 模式选择:**")
                 # 在左侧列内部再次使用列，让两个开关紧挨着
                 control_cols = st.columns(2)
                 with control_cols[0]:
